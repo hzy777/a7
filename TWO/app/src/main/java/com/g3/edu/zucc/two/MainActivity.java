@@ -8,9 +8,6 @@ import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 import android.Manifest;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
@@ -28,10 +25,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      * 扫描跳转Activity RequestCode
      */
     public static final int REQUEST_CODE = 111;
-    /**
-     * 选择系统图片Request Code
-     */
-    public static final int REQUEST_IMAGE = 112;
 
     public Button button1 = null;
 
@@ -47,21 +40,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         initView();
     }
 
-
-    /**
-     * 初始化组件
-     */
     private void initView() {
         button1 = (Button) findViewById(R.id.button1);
-
         /**
          * 打开默认二维码扫描界面
-         *
-         * 打开系统图片选择界面
-         *
-         * 定制化显示扫描界面
-         *
-         * 测试生成二维码图片
          */
         button1.setOnClickListener(new ButtonOnClickListener(button1.getId()));
 
@@ -176,13 +158,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      * @param buttonId
      */
     private void onClick(int buttonId) {
-        switch (buttonId) {
-            case R.id.button1:
+        if(buttonId==R.id.button1) {
                 Intent intent = new Intent(getApplication(), CaptureActivity.class);
                 startActivityForResult(intent, REQUEST_CODE);
-                break;
-            default:
-                break;
         }
     }
 }
